@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize'
 
 import User from '../app/models/User.js'
+import Products from '../app/models/Products.js'
 import condigDatabase from '../config/database.js'
 
-const models = [User]
+const models = [User, Products]
 
 class Database {
   constructor() {
