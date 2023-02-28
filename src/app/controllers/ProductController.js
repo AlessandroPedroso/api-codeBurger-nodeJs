@@ -18,7 +18,6 @@ class ProductController {
 
     const { filename: path } = request.file
     const { name, price, category } = request.body
-
     // console.log(file)
     const product = await Product.create({
       name,
@@ -31,7 +30,7 @@ class ProductController {
 
   async index(request, response) {
     const product = await Product.findAll()
-
+    console.log('id: ' + request.userId)
     return response.json(product)
   }
 }
