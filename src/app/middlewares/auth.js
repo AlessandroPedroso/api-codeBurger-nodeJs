@@ -16,9 +16,11 @@ export default (request, response, next) => {
       if (err) {
         throw new Error()
       }
-      console.log(decoded)
+      // console.log(decoded)
       request.userId = decoded.id
       request.userName = decoded.name
+      console.log(request.userId)
+      console.log(request.userName)
       return next()
     })
   } catch (error) {
