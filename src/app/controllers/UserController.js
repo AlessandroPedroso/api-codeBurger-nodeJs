@@ -38,7 +38,7 @@ class UserController {
     })
 
     if (userExist) {
-      return response.status(400).json({ error: 'Usuário já existe' })
+      return response.status(409).json({ error: 'E-mail já cadastrado! Faça o login para continuar' })
     }
 
     // const user = {
