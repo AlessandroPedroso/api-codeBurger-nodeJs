@@ -104,6 +104,42 @@ class CategoryController {
 
     return response.status(200).json()
   }
+
+  async delete(request,response){
+
+    const schema = Yup.object().shape({
+      id: Yup.number().required(),
+    })
+
+    try {
+      await schema.validateSync(request.params, { abortEarly: false })
+    } catch (err) {
+      // console.log(err)
+      return response.status(400).json({ error: err.errors })
+    }
+
+    const {id} = request.params
+
+    const category = await Category.findByPk(id)
+
+    if (!category) {
+      return response
+        .status(401)
+        .json({ error: 'Make sure your category id is correct' })
+    }
+
+    const { admin: isAdmin } = await User.findByPk(request.userId)
+
+    if (!isAdmin) {
+      return response.status(401).json()
+    }
+
+    await Category.destroy({
+        where:{id}
+    })
+
+    return response.status(204).json()
+  }
 }
 
 export default new CategoryController()
