@@ -15,7 +15,7 @@ class Database {
   }
 
   init() {
-    this.connection = new Sequelize(condigDatabase /*'postgresql://postgres:kaCri7BQMW5gkErJRthb@containers-us-west-202.railway.app:6461/railway'*/)
+    this.connection = new Sequelize( 'postgresql://postgres:kaCri7BQMW5gkErJRthb@containers-us-west-202.railway.app:6461/railway')
 
     models
       .map((model) => model.init(this.connection))
